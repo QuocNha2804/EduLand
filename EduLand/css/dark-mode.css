@@ -1,0 +1,15 @@
+/* Dark mode specific overrides (vars in style.css) */
+body.dark {
+  color-scheme: dark;
+}
+body.dark .course-thumb,
+body.dark .blog-thumb,
+body.dark .cart-item .thumb,
+body.dark .instructor-avatar,
+body.dark .feature-icon,
+body.dark .modal-edu .icon-circle {
+  filter: brightness(0.9);
+}
+body.dark .btn-edu:hover {
+  box-shadow: 0 10px 30px rgba(0, 180, 216, 0.35);
+}
