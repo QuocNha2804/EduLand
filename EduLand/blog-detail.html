@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết bài viết — EduLand</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark-mode.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div id="preloader"><div class="spinner"></div></div>
+    <nav class="navbar-edu">
+      <div
+        class="container d-flex align-items-center justify-content-between gap-3"
+      >
+        <a href="index.html" class="logo"
+          ><i class="bi bi-mortarboard-fill"></i><span>EduLand</span></a
+        >
+        <ul class="nav-links">
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="courses.html">Khóa học</a></li>
+          <li><a href="instructors.html">Giảng viên</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="contact.html">Liên hệ</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <button class="nav-icon-btn" id="themeToggle">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+          <a href="cart.html" class="nav-icon-btn"
+            ><i class="bi bi-cart3"></i
+            ><span class="cart-badge" id="cartBadge">0</span></a
+          >
+          <div id="authArea"></div>
+          <button class="hamburger" id="hamburger">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="container" style="max-width: 900px">
+        <div id="blogContent"></div>
+        <h2 class="section-title mt-5">Bài viết liên quan</h2>
+        <div class="row g-4" id="relatedBlogs"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom" style="border: none; margin: 0; padding: 0">
+          © 2024 EduLand. All rights reserved.
+        </div>
+      </div>
+    </footer>
+    <button id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      renderAuthNav();
+      const id = +new URLSearchParams(location.search).get("id") || 1;
+      const b = BLOGS.find((x) => x.id === id) || BLOGS[0];
+
+      document.getElementById("blogContent").innerHTML = `
+    <span class="blog-tag" style="color:var(--primary);font-weight:700">${b.tag}</span>
+    <h1 class="mt-2 mb-3">${b.title}</h1>
+    <div class="d-flex gap-4 text-muted mb-4" style="font-size:0.9rem">
+      <span><i class="bi bi-person"></i> ${b.author}</span>
+      <span><i class="bi bi-calendar"></i> ${b.date}</span>
+      <span><i class="bi bi-clock"></i> ${b.readTime}</span>
+    </div>
+    <div class="blog-thumb" style="height:320px;border-radius:16px;margin-bottom:28px"><i class="bi ${b.icon}" style="font-size:6rem"></i></div>
+    <p class="text-muted" style="font-size:1.05rem">${b.excerpt}</p>
+    <p class="text-muted">Đây là nội dung chi tiết của bài viết. Trong thế giới công nghệ phát triển không ngừng, việc cập nhật kiến thức mới là vô cùng cần thiết. Bài viết này sẽ giúp bạn hiểu rõ hơn về chủ đề và có những định hướng phát triển phù hợp.</p>
+    <h4>1. Tổng quan</h4>
+    <p class="text-muted">Nội dung chi tiết về chủ đề sẽ được trình bày rõ ràng, kèm theo ví dụ minh họa thực tế giúp người đọc dễ dàng tiếp cận.</p>
+    <h4>2. Lợi ích</h4>
+    <p class="text-muted">Áp dụng những kiến thức này sẽ giúp bạn tiết kiệm thời gian, nâng cao hiệu suất và đạt được kết quả tốt hơn trong công việc.</p>
+    <h4>3. Kết luận</h4>
+    <p class="text-muted">Hy vọng bài viết mang lại nhiều giá trị cho bạn. Hãy tiếp tục theo dõi EduLand để cập nhật thêm nhiều bài viết bổ ích.</p>`;
+
+      const related = BLOGS.filter(
+        (x) => x.tag === b.tag && x.id !== b.id,
+      ).slice(0, 3);
+      document.getElementById("relatedBlogs").innerHTML = related
+        .map((r) => `<div class="col-md-4">${blogCardHTML(r)}</div>`)
+        .join("");
+    </script>
+  </body>
+</html>

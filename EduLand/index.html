@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduLand — Nền tảng Học Online Hàng đầu</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark-mode.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar-edu">
+      <div
+        class="container d-flex align-items-center justify-content-between gap-3"
+      >
+        <a href="index.html" class="logo"
+          ><i class="bi bi-mortarboard-fill"></i><span>EduLand</span></a
+        >
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Trang chủ</a></li>
+          <li><a href="courses.html">Khóa học</a></li>
+          <li><a href="instructors.html">Giảng viên</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Liên hệ</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Tìm khóa học..." />
+            <button id="searchBtn"><i class="bi bi-search"></i></button>
+          </div>
+          <button class="nav-icon-btn" id="themeToggle" title="Đổi giao diện">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" title="Giỏ hàng">
+            <i class="bi bi-cart3"></i
+            ><span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <div id="authArea" class="d-flex align-items-center gap-2"></div>
+          <button class="hamburger" id="hamburger">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6" data-aos="fade-right">
+            <h1>
+              Học kỹ năng mới,<br /><span class="highlight"
+                >Thay đổi tương lai</span
+              >
+            </h1>
+            <p>
+              Hơn 1,000+ khóa học chất lượng cao từ các chuyên gia hàng đầu. Học
+              mọi lúc, mọi nơi, với lộ trình cá nhân hóa.
+            </p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="courses.html" class="btn-edu"
+                >Khám phá ngay <i class="bi bi-arrow-right"></i
+              ></a>
+              <a href="register.html" class="btn-edu-outline"
+                >Đăng ký miễn phí</a
+              >
+            </div>
+          </div>
+          <div
+            class="col-lg-6 text-center hero-illustration"
+            data-aos="fade-left"
+          >
+            <i
+              class="bi bi-mortarboard"
+              style="font-size: 16rem; color: #fff; opacity: 0.9"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="container">
+      <div class="stats-bar row g-4" data-aos="fade-up">
+        <div class="col-6 col-md-3 stat-item">
+          <div class="num" data-count="25000" data-suffix="+">0</div>
+          <div class="label">Học viên</div>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <div class="num" data-count="1000" data-suffix="+">0</div>
+          <div class="label">Khóa học</div>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <div class="num" data-count="150" data-suffix="+">0</div>
+          <div class="label">Giảng viên</div>
+        </div>
+        <div class="col-6 col-md-3 stat-item">
+          <div class="num" data-count="50000" data-suffix="+">0</div>
+          <div class="label">Chứng chỉ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Courses -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Khóa học nổi bật</h2>
+        <p class="section-subtitle" data-aos="fade-up">
+          Những khóa học được học viên yêu thích nhất
+        </p>
+        <div class="row g-4" id="featuredCourses"></div>
+        <div class="text-center mt-5">
+          <a href="courses.html" class="btn-edu-outline"
+            >Xem tất cả khóa học <i class="bi bi-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why choose us -->
+    <section class="section" style="background: var(--bg-card)">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Tại sao chọn EduLand?</h2>
+        <p class="section-subtitle" data-aos="fade-up">
+          Những giá trị khác biệt chúng tôi mang lại cho học viên
+        </p>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card" data-aos="fade-up">
+              <div class="feature-icon">
+                <i class="bi bi-lightning-charge-fill"></i>
+              </div>
+              <h4>Học nhanh</h4>
+              <p>
+                Lộ trình tối ưu giúp bạn nắm bắt kiến thức nhanh chóng và hiệu
+                quả.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="feature-icon">
+                <i class="bi bi-patch-check-fill"></i>
+              </div>
+              <h4>Chất lượng</h4>
+              <p>Nội dung được kiểm duyệt bởi các chuyên gia đầu ngành.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="feature-icon">
+                <i class="bi bi-clock-history"></i>
+              </div>
+              <h4>Linh hoạt</h4>
+              <p>Học mọi lúc, truy cập trọn đời, không giới hạn thời gian.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="feature-icon"><i class="bi bi-award-fill"></i></div>
+              <h4>Chứng chỉ</h4>
+              <p>Nhận chứng chỉ được công nhận sau khi hoàn thành khóa học.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instructors -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Giảng viên hàng đầu</h2>
+        <p class="section-subtitle" data-aos="fade-up">
+          Đội ngũ chuyên gia giàu kinh nghiệm thực tiễn
+        </p>
+        <div class="row g-4" id="homeInstructors"></div>
+        <div class="text-center mt-5">
+          <a href="instructors.html" class="btn-edu-outline"
+            >Xem tất cả giảng viên <i class="bi bi-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" style="background: var(--bg-card)">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Đánh giá học viên</h2>
+        <p class="section-subtitle" data-aos="fade-up">
+          Cảm nhận từ những học viên đã thành công cùng EduLand
+        </p>
+        <div class="swiper" id="testimonialSwiper" data-aos="fade-up">
+          <div class="swiper-wrapper" id="testimonialWrapper"></div>
+          <div class="swiper-pagination mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Blog -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Blog mới nhất</h2>
+        <p class="section-subtitle" data-aos="fade-up">
+          Cập nhật kiến thức và xu hướng mới nhất
+        </p>
+        <div class="row g-4" id="homeBlogs"></div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="container mb-5">
+      <div class="newsletter" data-aos="zoom-in">
+        <h2>Đăng ký nhận tin</h2>
+        <p>Nhận thông tin khóa học mới, ưu đãi đặc biệt qua email</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+          <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Nhập email của bạn..."
+            required
+          />
+          <button type="submit" class="btn-edu">Đăng ký</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <h5 class="logo" style="color: #fff">
+              <i class="bi bi-mortarboard-fill"></i> EduLand
+            </h5>
+            <p class="mt-3">
+              Nền tảng học trực tuyến hàng đầu Việt Nam, mang tri thức đến mọi
+              người.
+            </p>
+            <div class="socials mt-3">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-youtube"></i></a>
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Liên kết</h5>
+            <ul>
+              <li><a href="index.html">Trang chủ</a></li>
+              <li><a href="courses.html">Khóa học</a></li>
+              <li><a href="instructors.html">Giảng viên</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Hỗ trợ</h5>
+            <ul>
+              <li><a href="#">Trung tâm trợ giúp</a></li>
+              <li><a href="#">Điều khoản sử dụng</a></li>
+              <li><a href="#">Chính sách bảo mật</a></li>
+              <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Liên hệ</h5>
+            <ul>
+              <li><i class="bi bi-geo-alt"></i> 123 Nguyễn Huệ, Q.1, TP.HCM</li>
+              <li><i class="bi bi-telephone"></i> 1900 1234</li>
+              <li><i class="bi bi-envelope"></i> hello@eduland.vn</li>
+              <li><i class="bi bi-clock"></i> T2-T6: 8:00 - 18:00</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">© 2024 EduLand. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <button id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 800 });
+
+      // Featured courses (first 6)
+      document.getElementById("featuredCourses").innerHTML = COURSES.slice(0, 6)
+        .map((c) => `<div class="col-md-6 col-lg-4">${courseCardHTML(c)}</div>`)
+        .join("");
+
+      // Instructors (first 4)
+      document.getElementById("homeInstructors").innerHTML = INSTRUCTORS.slice(
+        0,
+        4,
+      )
+        .map(
+          (i) =>
+            `<div class="col-md-6 col-lg-3">${instructorCardHTML(i)}</div>`,
+        )
+        .join("");
+
+      // Testimonials
+      document.getElementById("testimonialWrapper").innerHTML =
+        TESTIMONIALS.map(
+          (t) => `
+    <div class="swiper-slide">
+      <div class="testimonial-card">
+        <div class="rating">★★★★★</div>
+        <p>"${t.text}"</p>
+        <div class="who">
+          <span class="avatar">${t.avatar}</span>
+          <div><strong>${t.name}</strong><br><small class="text-muted">${t.role}</small></div>
+        </div>
+      </div>
+    </div>`,
+        ).join("");
+
+      new Swiper("#testimonialSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        pagination: { el: ".swiper-pagination", clickable: true },
+        autoplay: { delay: 4000 },
+        breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+      });
+
+      // Blogs (first 3)
+      document.getElementById("homeBlogs").innerHTML = BLOGS.slice(0, 3)
+        .map((b) => `<div class="col-md-6 col-lg-4">${blogCardHTML(b)}</div>`)
+        .join("");
+
+      renderAuthNav();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập — EduLand</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark-mode.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <a
+          href="index.html"
+          class="logo justify-content-center mb-3"
+          style="display: flex"
+          ><i class="bi bi-mortarboard-fill"></i><span>EduLand</span></a
+        >
+        <h2>Đăng nhập</h2>
+        <p class="sub">Chào mừng trở lại! Vui lòng đăng nhập</p>
+        <form id="loginForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label-edu">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              class="form-control-edu"
+              required
+            />
+            <div class="error-msg" id="errLEmail">Email không hợp lệ</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label-edu">Mật khẩu</label>
+            <input
+              type="password"
+              id="loginPass"
+              class="form-control-edu"
+              required
+            />
+            <div class="error-msg" id="errLPass">Mật khẩu không đúng</div>
+          </div>
+          <button type="submit" class="btn-edu w-100 mb-3">Đăng nhập</button>
+          <p class="text-center text-muted" style="font-size: 0.9rem">
+            Chưa có tài khoản?
+            <a href="register.html" class="fw-semibold">Đăng ký ngay</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("loginEmail").value.trim();
+        const pass = document.getElementById("loginPass").value;
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        document
+          .getElementById("errLEmail")
+          .classList.toggle("show", !re.test(email));
+        document
+          .getElementById("loginEmail")
+          .classList.toggle("is-invalid", !re.test(email));
+        document.getElementById("errLPass").classList.remove("show");
+        document.getElementById("loginPass").classList.remove("is-invalid");
+
+        if (!re.test(email)) return;
+
+        const res = loginUser(email, pass);
+        if (res.ok) {
+          showToast(res.msg, "success");
+          setTimeout(() => (location.href = "index.html"), 800);
+        } else {
+          document.getElementById("errLPass").textContent = res.msg;
+          document.getElementById("errLPass").classList.add("show");
+          document.getElementById("loginPass").classList.add("is-invalid");
+        }
+      });
+    </script>
+  </body>
+</html>

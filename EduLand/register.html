@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký — EduLand</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark-mode.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <a
+          href="index.html"
+          class="logo justify-content-center mb-3"
+          style="display: flex"
+          ><i class="bi bi-mortarboard-fill"></i><span>EduLand</span></a
+        >
+        <h2>Đăng ký</h2>
+        <p class="sub">Tạo tài khoản để bắt đầu học ngay</p>
+        <form id="registerForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label-edu">Họ và tên</label>
+            <input type="text" id="regName" class="form-control-edu" required />
+            <div class="error-msg" id="errName">Họ tên ít nhất 2 ký tự</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label-edu">Email</label>
+            <input
+              type="email"
+              id="regEmail"
+              class="form-control-edu"
+              required
+            />
+            <div class="error-msg" id="errEmail"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label-edu">Mật khẩu</label>
+            <input
+              type="password"
+              id="regPass"
+              class="form-control-edu"
+              required
+            />
+            <div class="error-msg" id="errPass">
+              Mật khẩu ít nhất 6 ký tự, có chữ hoa và số
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label-edu">Xác nhận mật khẩu</label>
+            <input
+              type="password"
+              id="regPass2"
+              class="form-control-edu"
+              required
+            />
+            <div class="error-msg" id="errPass2">Mật khẩu không khớp</div>
+          </div>
+          <div class="mb-3">
+            <label
+              class="opt"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                font-size: 0.9rem;
+              "
+            >
+              <input
+                type="checkbox"
+                id="regTerms"
+                style="accent-color: var(--primary)"
+              />
+              <span>Tôi đồng ý với <a href="#">Điều khoản</a></span>
+            </label>
+            <div class="error-msg" id="errTerms">
+              Vui lòng đồng ý điều khoản
+            </div>
+          </div>
+          <button type="submit" class="btn-edu w-100 mb-3">Đăng ký</button>
+          <p class="text-center text-muted" style="font-size: 0.9rem">
+            Đã có tài khoản?
+            <a href="login.html" class="fw-semibold">Đăng nhập</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const passRe = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
+
+      // Realtime validation
+      document.getElementById("regEmail").addEventListener("input", (e) => {
+        const val = e.target.value.trim();
+        const exists = getUsers().some(
+          (u) => u.email.toLowerCase() === val.toLowerCase(),
+        );
+        let msg = "";
+        if (val && !re.test(val)) msg = "Email không hợp lệ";
+        else if (exists) msg = "Email đã được đăng ký";
+        const err = document.getElementById("errEmail");
+        err.textContent = msg;
+        err.classList.toggle("show", !!msg);
+        e.target.classList.toggle("is-invalid", !!msg);
+      });
+
+      document.getElementById("regPass").addEventListener("input", (e) => {
+        const ok = passRe.test(e.target.value);
+        const err = document.getElementById("errPass");
+        err.classList.toggle("show", e.target.value && !ok);
+        e.target.classList.toggle("is-invalid", e.target.value && !ok);
+      });
+
+      document.getElementById("regPass2").addEventListener("input", (e) => {
+        const p1 = document.getElementById("regPass").value;
+        const ok = e.target.value === p1 && e.target.value;
+        const err = document.getElementById("errPass2");
+        err.classList.toggle("show", e.target.value && !ok);
+        e.target.classList.toggle("is-invalid", e.target.value && !ok);
+      });
+
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("regName").value.trim();
+          const email = document.getElementById("regEmail").value.trim();
+          const pass = document.getElementById("regPass").value;
+          const pass2 = document.getElementById("regPass2").value;
+          const terms = document.getElementById("regTerms").checked;
+
+          const eName = name.length < 2;
+          const eEmail =
+            !re.test(email) ||
+            getUsers().some(
+              (u) => u.email.toLowerCase() === email.toLowerCase(),
+            );
+          const ePass = !passRe.test(pass);
+          const ePass2 = pass !== pass2;
+          const eTerms = !terms;
+
+          document.getElementById("errName").classList.toggle("show", eName);
+          document
+            .getElementById("regName")
+            .classList.toggle("is-invalid", eName);
+          if (
+            !document.getElementById("errEmail").classList.contains("show") &&
+            eEmail
+          ) {
+            document.getElementById("errEmail").textContent =
+              "Email không hợp lệ hoặc đã tồn tại";
+            document.getElementById("errEmail").classList.add("show");
+            document.getElementById("regEmail").classList.add("is-invalid");
+          }
+          document.getElementById("errPass").classList.toggle("show", ePass);
+          document
+            .getElementById("regPass")
+            .classList.toggle("is-invalid", ePass);
+          document.getElementById("errPass2").classList.toggle("show", ePass2);
+          document
+            .getElementById("regPass2")
+            .classList.toggle("is-invalid", ePass2);
+          document.getElementById("errTerms").classList.toggle("show", eTerms);
+
+          if (eName || eEmail || ePass || ePass2 || eTerms) return;
+
+          const res = registerUser(name, email, pass);
+          if (res.ok) {
+            showToast("Đăng ký thành công! Đang chuyển hướng...", "success");
+            setTimeout(() => (location.href = "index.html"), 1000);
+          } else {
+            showToast(res.msg, "error");
+          }
+        });
+    </script>
+  </body>
+</html>
