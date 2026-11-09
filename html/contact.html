@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liên hệ — EduLand</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dark-mode.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <script src="../js/theme.js"></script>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar-edu">
+      <div
+        class="container d-flex align-items-center justify-content-between gap-3"
+      >
+        <a href="../index.html" class="logo"
+          ><i class="bi bi-mortarboard-fill"></i><span>EduLand</span></a
+        >
+        <ul class="nav-links">
+          <li><a href="../index.html">Trang chủ</a></li>
+          <li><a href="courses.html">Khóa học</a></li>
+          <li><a href="instructors.html">Giảng viên</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html" class="active">Liên hệ</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Tìm khóa học..." />
+            <button id="searchBtn" aria-label="Tìm kiếm"><i class="bi bi-search"></i></button>
+          </div>
+          <button class="nav-icon-btn" id="themeToggle" title="Đổi giao diện">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" title="Giỏ hàng">
+            <i class="bi bi-cart3"></i
+            ><span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <div id="authArea" class="d-flex align-items-center gap-2"></div>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="section" style="padding-bottom: 20px">
+      <div class="container text-center">
+        <h2 class="section-title">Liên hệ với chúng tôi</h2>
+        <p class="section-subtitle">
+          Chúng tôi luôn sẵn sàng lắng nghe, giải đáp thắc mắc và đồng hành cùng bạn trên con đường học tập
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Info & Form -->
+    <section class="pb-5">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Contact Info -->
+          <div class="col-lg-5">
+            <div class="filter-card h-100" style="position: static">
+              <h4 class="mb-4">Thông tin liên hệ trực tiếp</h4>
+              <div class="d-flex gap-3 mb-4 align-items-start">
+                <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin: 0; flex-shrink: 0">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div>
+                  <strong>Địa chỉ trụ sở</strong><br />
+                  <span class="text-muted">123 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</span>
+                </div>
+              </div>
+
+              <div class="d-flex gap-3 mb-4 align-items-start">
+                <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin: 0; flex-shrink: 0">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div>
+                  <strong>Tổng đài hỗ trợ 24/7</strong><br />
+                  <span class="text-muted">Hotline: <strong>1900 1234</strong> (Miễn phí cước gọi)</span>
+                </div>
+              </div>
+
+              <div class="d-flex gap-3 mb-4 align-items-start">
+                <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin: 0; flex-shrink: 0">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div>
+                  <strong>Email liên hệ</strong><br />
+                  <span class="text-muted">hello@eduland.vn &nbsp;·&nbsp; support@eduland.vn</span>
+                </div>
+              </div>
+
+              <div class="d-flex gap-3 mb-4 align-items-start">
+                <div class="feature-icon" style="width: 50px; height: 50px; font-size: 1.2rem; margin: 0; flex-shrink: 0">
+                  <i class="bi bi-clock"></i>
+                </div>
+                <div>
+                  <strong>Giờ làm việc</strong><br />
+                  <span class="text-muted">Thứ Hai - Thứ Sáu: 8:00 - 18:00<br />Thứ Bảy: 8:00 - 12:00</span>
+                </div>
+              </div>
+
+              <hr />
+              <h5 class="mb-3">Kết nối mạng xã hội</h5>
+              <div class="socials" style="justify-content: flex-start">
+                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                <a href="#" aria-label="Twitter/X"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="col-lg-7">
+            <div class="filter-card h-100" style="position: static">
+              <h4 class="mb-3">Gửi tin nhắn hoặc phản hồi</h4>
+              <p class="text-muted mb-4">Điền thông tin bên dưới, chuyên viên tư vấn sẽ liên hệ lại với bạn trong vòng 24 giờ làm việc.</p>
+
+              <form id="contactForm" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label-edu">Họ và tên *</label>
+                    <input class="form-control-edu" id="cName" placeholder="Ví dụ: Nguyễn Văn A" required />
+                    <div class="error-msg" id="errName">Vui lòng nhập họ tên (ít nhất 2 ký tự)</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label-edu">Địa chỉ Email *</label>
+                    <input type="email" class="form-control-edu" id="cEmail" placeholder="email@domain.com" required />
+                    <div class="error-msg" id="errEmail">Email không hợp lệ</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label-edu">Chủ đề cần hỗ trợ *</label>
+                    <input class="form-control-edu" id="cSubject" placeholder="Ví dụ: Tư vấn lộ trình học Frontend..." required />
+                    <div class="error-msg" id="errSubject">Vui lòng nhập chủ đề (ít nhất 3 ký tự)</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label-edu">Nội dung chi tiết *</label>
+                    <textarea class="form-control-edu" id="cMessage" rows="5" placeholder="Mô tả cụ thể câu hỏi hoặc nhu cầu của bạn..." required></textarea>
+                    <div class="error-msg" id="errMessage">Nội dung tin nhắn cần ít nhất 10 ký tự</div>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn-edu w-100">
+                      <i class="bi bi-send"></i> Gửi thông tin liên hệ
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="col-12 mt-5">
+            <h3 class="section-title">Câu hỏi thường gặp (FAQ)</h3>
+            <p class="section-subtitle">Một số câu hỏi phổ biến từ các bạn học viên mới</p>
+
+            <div class="accordion-edu" style="max-width: 860px; margin: 0 auto">
+              <div class="item open">
+                <div class="head open active" onclick="toggleFaq(this)">
+                  <span>Tôi có được sở hữu khóa học vĩnh viễn không?</span>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="body open" style="max-height: 200px">
+                  <div class="p-3 text-muted">
+                    Có! Khi thanh toán thành công bất kỳ khóa học nào tại EduLand, bạn sẽ được quyền truy cập học trọn đời, xem lại bài giảng bất cứ lúc nào và nhận mọi bản cập nhật mới miễn phí.
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="head" onclick="toggleFaq(this)">
+                  <span>EduLand hỗ trợ những hình thức thanh toán nào?</span>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="body" style="max-height: 0px">
+                  <div class="p-3 text-muted">
+                    Chúng tôi hỗ trợ đa dạng phương thức: Ví điện tử MoMo, VNPAY QR, Chuyển khoản ngân hàng tức thì (24/7), thẻ tín dụng/ghi nợ quốc tế Visa/MasterCard.
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="head" onclick="toggleFaq(this)">
+                  <span>Chứng chỉ của EduLand có giá trị như thế nào?</span>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="body" style="max-height: 0px">
+                  <div class="p-3 text-muted">
+                    Sau khi hoàn thành 100% bài học và vượt qua dự án thực hành cuối khóa, bạn sẽ nhận được chứng chỉ số có mã xác thực định danh, dễ dàng đính kèm vào hồ sơ CV hoặc LinkedIn để gây ấn tượng với nhà tuyển dụng.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Google Maps -->
+          <div class="col-12 mt-4">
+            <h4 class="mb-3 text-center">Bản đồ chỉ dẫn</h4>
+            <div style="border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border)">
+              <iframe
+                title="Google Maps EduLand"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4946612535436!2d106.7011686147485!3d10.774952362086895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f40d5f2a4e3%3A0x6e6e6e6e6e6e6e6e!2zTmd1eeG7hW4gSHXhu4csIFF14bqtbiAx!5e0!3m2!1svi!2s!4v1617000000000"
+                width="100%"
+                height="380"
+                style="border: 0"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <h5 class="logo" style="color: #fff">
+              <i class="bi bi-mortarboard-fill"></i> EduLand
+            </h5>
+            <p class="mt-3">
+              Nền tảng học trực tuyến hàng đầu Việt Nam, mang tri thức đến mọi
+              người với trải nghiệm tốt nhất.
+            </p>
+            <div class="socials mt-3" style="justify-content: flex-start">
+              <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+              <a href="#" aria-label="Twitter/X"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Liên kết</h5>
+            <ul>
+              <li><a href="../index.html">Trang chủ</a></li>
+              <li><a href="courses.html">Khóa học</a></li>
+              <li><a href="instructors.html">Giảng viên</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Hỗ trợ</h5>
+            <ul>
+              <li><a href="contact.html">Trung tâm trợ giúp</a></li>
+              <li><a href="contact.html">Điều khoản sử dụng</a></li>
+              <li><a href="contact.html">Chính sách bảo mật</a></li>
+              <li><a href="contact.html">Liên hệ hỗ trợ</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Liên hệ</h5>
+            <ul>
+              <li><i class="bi bi-geo-alt"></i> 123 Nguyễn Huệ, Q.1, TP.HCM</li>
+              <li><i class="bi bi-telephone"></i> 1900 1234</li>
+              <li><i class="bi bi-envelope"></i> hello@eduland.vn</li>
+              <li><i class="bi bi-clock"></i> T2-T6: 8:00 - 18:00</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">© 2024 EduLand. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Lên đầu trang"><i class="bi bi-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 800 });
+      renderAuthNav();
+
+      function toggleFaq(head) {
+        const body = head.nextElementSibling;
+        const isOpen = body.classList.contains("open");
+        head.classList.toggle("open", !isOpen);
+        head.classList.toggle("active", !isOpen);
+        body.classList.toggle("open", !isOpen);
+        body.style.maxHeight = isOpen ? "0px" : "300px";
+      }
+
+      function setErr(inputId, errId, show) {
+        const input = document.getElementById(inputId);
+        const err = document.getElementById(errId);
+        if (input) input.classList.toggle("is-invalid", show);
+        if (err) err.classList.toggle("show", show);
+      }
+
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("cName").value.trim();
+        const email = document.getElementById("cEmail").value.trim();
+        const subject = document.getElementById("cSubject").value.trim();
+        const message = document.getElementById("cMessage").value.trim();
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        const eName = name.length < 2;
+        const eEmail = !re.test(email);
+        const eSubject = subject.length < 3;
+        const eMessage = message.length < 10;
+
+        setErr("cName", "errName", eName);
+        setErr("cEmail", "errEmail", eEmail);
+        setErr("cSubject", "errSubject", eSubject);
+        setErr("cMessage", "errMessage", eMessage);
+
+        if (!eName && !eEmail && !eSubject && !eMessage) {
+          // Save contact request to localStorage
+          try {
+            const list = JSON.parse(localStorage.getItem("eduland_contacts") || "[]");
+            list.push({ name, email, subject, message, date: new Date().toISOString() });
+            localStorage.setItem("eduland_contacts", JSON.stringify(list));
+          } catch (err) {}
+
+          showToast("Gửi tin nhắn thành công! Đội ngũ EduLand sẽ phản hồi bạn sớm nhất.", "success");
+          e.target.reset();
+        }
+      });
+    </script>
+  </body>
+</html>

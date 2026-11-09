@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết khóa học — EduLand</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dark-mode.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <script src="../js/theme.js"></script>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <!-- Navbar -->
+    <nav class="navbar-edu">
+      <div
+        class="container d-flex align-items-center justify-content-between gap-3"
+      >
+        <a href="../index.html" class="logo"
+          ><i class="bi bi-mortarboard-fill"></i><span>EduLand</span></a
+        >
+        <ul class="nav-links">
+          <li><a href="../index.html">Trang chủ</a></li>
+          <li><a href="courses.html" class="active">Khóa học</a></li>
+          <li><a href="instructors.html">Giảng viên</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Liên hệ</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Tìm khóa học..." />
+            <button id="searchBtn" aria-label="Tìm kiếm"><i class="bi bi-search"></i></button>
+          </div>
+          <button class="nav-icon-btn" id="themeToggle" title="Đổi giao diện">
+            <i class="bi bi-moon-stars-fill"></i>
+          </button>
+          <a href="cart.html" class="nav-icon-btn" title="Giỏ hàng">
+            <i class="bi bi-cart3"></i
+            ><span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <div id="authArea" class="d-flex align-items-center gap-2"></div>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banner -->
+    <section id="detailBanner" class="hero" style="padding: 60px 0"></section>
+
+    <!-- Main Detail Section -->
+    <section class="section">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="courses.html">Khóa học</a></li>
+            <li class="breadcrumb-item active" id="breadcrumbTitle" aria-current="page">Chi tiết</li>
+          </ol>
+        </nav>
+
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="tab-edu">
+              <button class="active" onclick="switchTab(event, 'desc')">
+                <i class="bi bi-info-circle"></i> Mô tả
+              </button>
+              <button onclick="switchTab(event, 'content')">
+                <i class="bi bi-list-task"></i> Nội dung
+              </button>
+              <button onclick="switchTab(event, 'instructor')">
+                <i class="bi bi-person-badge"></i> Giảng viên
+              </button>
+              <button onclick="switchTab(event, 'reviews')">
+                <i class="bi bi-star"></i> Đánh giá
+              </button>
+            </div>
+
+            <div id="tab-desc" class="tab-content-edu"></div>
+            <div id="tab-content" class="tab-content-edu" style="display: none"></div>
+            <div id="tab-instructor" class="tab-content-edu" style="display: none"></div>
+            <div id="tab-reviews" class="tab-content-edu" style="display: none"></div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="filter-card" style="position: sticky; top: 90px">
+              <div id="detailPrice" class="mb-3"></div>
+              <button class="btn-edu w-100 mb-2" id="addCartBtn">
+                <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+              </button>
+              <button class="btn-edu-outline w-100 mb-3" onclick="buyNow()">
+                <i class="bi bi-lightning-charge"></i> Mua ngay
+              </button>
+
+              <h5 class="mb-3">Thông tin khóa học</h5>
+              <div id="courseInfo"></div>
+
+              <hr />
+              <h5 class="mb-3">Chia sẻ khóa học</h5>
+              <div class="socials" style="justify-content: flex-start">
+                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" aria-label="Twitter/X"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" aria-label="Copy Link" onclick="navigator.clipboard.writeText(location.href); showToast('Đã sao chép liên kết khóa học!', 'success'); return false;"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title mt-5">Khóa học liên quan</h2>
+        <p class="section-subtitle">Các khóa học cùng chủ đề có thể bạn quan tâm</p>
+        <div class="row g-4" id="relatedCourses"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <h5 class="logo" style="color: #fff">
+              <i class="bi bi-mortarboard-fill"></i> EduLand
+            </h5>
+            <p class="mt-3">
+              Nền tảng học trực tuyến hàng đầu Việt Nam, mang tri thức đến mọi
+              người với trải nghiệm tốt nhất.
+            </p>
+            <div class="socials mt-3" style="justify-content: flex-start">
+              <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+              <a href="#" aria-label="Twitter/X"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Liên kết</h5>
+            <ul>
+              <li><a href="../index.html">Trang chủ</a></li>
+              <li><a href="courses.html">Khóa học</a></li>
+              <li><a href="instructors.html">Giảng viên</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Hỗ trợ</h5>
+            <ul>
+              <li><a href="contact.html">Trung tâm trợ giúp</a></li>
+              <li><a href="contact.html">Điều khoản sử dụng</a></li>
+              <li><a href="contact.html">Chính sách bảo mật</a></li>
+              <li><a href="contact.html">Liên hệ hỗ trợ</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h5>Liên hệ</h5>
+            <ul>
+              <li><i class="bi bi-geo-alt"></i> 123 Nguyễn Huệ, Q.1, TP.HCM</li>
+              <li><i class="bi bi-telephone"></i> 1900 1234</li>
+              <li><i class="bi bi-envelope"></i> hello@eduland.vn</li>
+              <li><i class="bi bi-clock"></i> T2-T6: 8:00 - 18:00</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">© 2024 EduLand. All rights reserved.</div>
+      </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Lên đầu trang"><i class="bi bi-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 800 });
+      renderAuthNav();
+
+      const id = +new URLSearchParams(location.search).get("id") || 1;
+      const c = COURSES.find((x) => x.id === id) || COURSES[0];
+      const inst = INSTRUCTORS.find((x) => x.name === c.instructor) || {
+        id: 1,
+        name: c.instructor,
+        role: "Chuyên gia " + c.category,
+        bio: "Giảng viên có nhiều năm kinh nghiệm giảng dạy và tư vấn doanh nghiệp.",
+      };
+
+      // Set page title
+      document.title = `${c.title} — EduLand`;
+      document.getElementById("breadcrumbTitle").textContent = c.title;
+
+      // Banner
+      const levelBadge = {
+        Beginner: "badge-beginner",
+        Intermediate: "badge-intermediate",
+        Advanced: "badge-advanced",
+      }[c.level] || "badge-beginner";
+
+      document.getElementById("detailBanner").innerHTML = `
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-8" data-aos="fade-right">
+              <span class="badge-level ${levelBadge} mb-3" style="font-size:0.85rem;padding:6px 14px">${c.level}</span>
+              <h1 style="font-size:2.2rem;color:#fff">${c.title}</h1>
+              <p style="color:#e0f2fe">
+                <i class="bi bi-person-circle"></i> <a href="instructor-detail.html?id=${inst.id}" style="color:inherit;text-decoration:underline">${c.instructor}</a> &nbsp;·&nbsp;
+                <span style="color:#ffd700">★ ${c.rating}</span> (${c.reviews.toLocaleString("vi-VN")} đánh giá) &nbsp;·&nbsp;
+                <i class="bi bi-people"></i> ${c.students.toLocaleString("vi-VN")} học viên
+              </p>
+              <div style="color:#fff">
+                <i class="bi bi-tag"></i> ${c.category} &nbsp;·&nbsp;
+                <i class="bi bi-clock"></i> ${c.duration} &nbsp;·&nbsp;
+                <i class="bi bi-play-circle"></i> ${c.lessons} bài học &nbsp;·&nbsp;
+                <i class="bi bi-translate"></i> Tiếng Việt
+              </div>
+            </div>
+            <div class="col-lg-4 text-center hero-illustration" data-aos="fade-left">
+              <i class="bi ${c.icon}" style="font-size:9rem;color:rgba(255,255,255,0.9)"></i>
+            </div>
+          </div>
+        </div>`;
+
+      // Price
+      document.getElementById("detailPrice").innerHTML = `
+        <div class="price" style="font-size:2rem">
+          ${c.oldPrice ? `<span class="old" style="font-size:1.1rem">${fmt(c.oldPrice)}</span>` : ""}${fmt(c.price)}
+        </div>
+        ${c.oldPrice ? `<small class="text-success fw-bold">Tiết kiệm ${Math.round(((c.oldPrice - c.price) / c.oldPrice) * 100)}% hôm nay</small>` : ""}`;
+
+      // Info checklist
+      document.getElementById("courseInfo").innerHTML = `
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <span><i class="bi bi-clock-history text-primary"></i> Thời lượng</span>
+          <strong>${c.duration}</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <span><i class="bi bi-play-circle text-primary"></i> Bài học</span>
+          <strong>${c.lessons} bài học</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <span><i class="bi bi-bar-chart text-primary"></i> Cấp độ</span>
+          <strong>${c.level}</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2 border-bottom">
+          <span><i class="bi bi-award text-primary"></i> Chứng chỉ</span>
+          <strong class="text-success"><i class="bi bi-check-circle-fill"></i> Có sẵn</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <span><i class="bi bi-infinity text-primary"></i> Quyền truy cập</span>
+          <strong>Trọn đời</strong>
+        </div>`;
+
+      // Tab 1: Description
+      document.getElementById("tab-desc").innerHTML = `
+        <h3>Giới thiệu khóa học</h3>
+        <p class="text-muted mt-3" style="font-size:1.05rem;line-height:1.7">${c.description}</p>
+        <p class="text-muted" style="line-height:1.7">
+          Khóa học được thiết kế bài bản với phương pháp "học qua dự án" (project-based learning). Bạn sẽ không chỉ nắm vững lý thuyết mà còn tự tay xây dựng các ứng dụng hoàn chỉnh, chuẩn bị tốt nhất cho phỏng vấn và công việc thực tế.
+        </p>
+
+        <h4 class="mt-4 mb-3">Bạn sẽ học được gì sau khóa học?</h4>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="d-flex gap-2">
+              <i class="bi bi-check-circle-fill text-primary" style="font-size:1.1rem"></i>
+              <span>Nắm vững toàn bộ kiến thức nền tảng và nâng cao</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex gap-2">
+              <i class="bi bi-check-circle-fill text-primary" style="font-size:1.1rem"></i>
+              <span>Thực hành và xây dựng portfolio với các dự án thực tế</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex gap-2">
+              <i class="bi bi-check-circle-fill text-primary" style="font-size:1.1rem"></i>
+              <span>Hiểu sâu về kiến trúc, best practices và tối ưu hiệu năng</span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex gap-2">
+              <i class="bi bi-check-circle-fill text-primary" style="font-size:1.1rem"></i>
+              <span>Tự tin ứng tuyển và phỏng vấn tại các công ty công nghệ</span>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="mt-4 mb-3">Yêu cầu đầu vào</h4>
+        <ul class="text-muted" style="line-height:1.8">
+          <li>Máy tính có kết nối Internet.</li>
+          <li>Tinh thần ham học hỏi và kiên trì rèn luyện thực hành.</li>
+          <li>Không yêu cầu kinh nghiệm trước đó đối với các khóa học Beginner.</li>
+        </ul>`;
+
+      // Tab 2: Curriculum
+      const chapters = [
+        { title: "Giới thiệu & Thiết lập môi trường", lessons: ["Giới thiệu tổng quan lộ trình", "Cài đặt công cụ và môi trường", "Kiến thức nền tảng cần nhớ"] },
+        { title: "Kiến thức cốt lõi & Nguyên lý hoạt động", lessons: ["Khái niệm quan trọng & Syntax", "Các kỹ thuật xử lý dữ liệu", "Thực hành bài tập chương 2"] },
+        { title: "Nâng cao & Tối ưu hóa", lessons: ["Kỹ thuật nâng cao trong thực tế", "Xử lý lỗi và tối ưu hiệu năng", "Best practices từ chuyên gia"] },
+        { title: "Xây dựng dự án thực chiến (Capstone Project)", lessons: ["Lên kế hoạch và kiến trúc dự án", "Bắt đầu code các chức năng chính", "Deploy và hoàn thiện dự án"] },
+        { title: "Tổng kết, Đánh giá & Nhận chứng chỉ", lessons: ["Review toàn bộ kiến thức", "Tips phỏng vấn và CV", "Nhận chứng chỉ tốt nghiệp"] },
+      ];
+
+      document.getElementById("tab-content").innerHTML = `
+        <h3>Nội dung khóa học</h3>
+        <p class="text-muted">Gồm 5 chương, ${c.lessons} bài học, tổng thời lượng ${c.duration}</p>
+        <div class="accordion-edu mt-3">
+          ${chapters
+            .map(
+              (ch, i) => `
+            <div class="item ${i === 0 ? 'open' : ''}">
+              <div class="head ${i === 0 ? 'open active' : ''}" onclick="toggleAccordion(this)">
+                <span><strong class="text-primary">Chương ${i + 1}:</strong> ${ch.title}</span>
+                <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="body ${i === 0 ? 'open' : ''}">
+                ${ch.lessons.map((les, idx) => `
+                  <div class="lesson">
+                    <span><i class="bi bi-play-circle text-primary"></i> Bài ${idx + 1}: ${les}</span>
+                    <span class="badge bg-light text-dark">${15 + idx * 5}:00</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>`
+            )
+            .join("")}
+        </div>`;
+
+      // Tab 3: Instructor
+      document.getElementById("tab-instructor").innerHTML = `
+        <h3>Giảng viên phụ trách</h3>
+        <div class="d-flex gap-3 mt-4 align-items-center">
+          <div class="instructor-avatar" style="width:84px;height:84px;font-size:2rem;margin:0">
+            ${inst.name.split(" ").pop().charAt(0)}
+          </div>
+          <div>
+            <h4 class="mb-1">${inst.name}</h4>
+            <div class="role text-primary fw-semibold">${inst.role}</div>
+            <small class="text-muted">⭐ ${c.rating} rating &nbsp;·&nbsp; ${c.students.toLocaleString("vi-VN")} học viên</small>
+          </div>
+        </div>
+        <p class="text-muted mt-3" style="line-height:1.7">${inst.bio}</p>
+        <a href="instructor-detail.html?id=${inst.id}" class="btn-edu-outline mt-2">
+          <i class="bi bi-person"></i> Xem hồ sơ & các khóa học khác của giảng viên
+        </a>`;
+
+      // Tab 4: Reviews + Add Review Form
+      let courseReviews = [
+        { name: "Trần Minh Quân", rating: 5, date: "3 ngày trước", text: "Khóa học rất chi tiết và dễ hiểu! Giảng viên nhiệt tình giải đáp thắc mắc trong nhóm học tập." },
+        { name: "Lê Thị Thanh Mai", rating: 5, date: "1 tuần trước", text: "Nội dung thực chiến, code xong dự án capstone mình tự tin apply vị trí Junior luôn." },
+        { name: "Nguyễn Hải Đăng", rating: 4, date: "2 tuần trước", text: "Bài tập đa dạng, video chất lượng cao, rất đáng giá tiền đã đầu tư." },
+      ];
+
+      function renderReviewsList() {
+        return `
+          <div class="d-flex gap-4 align-items-center mb-4 p-4" style="background:var(--bg-card);border-radius:16px;border:1px solid var(--border)">
+            <div style="font-size:3.5rem;font-weight:900;color:var(--primary);line-height:1">${c.rating}</div>
+            <div>
+              <div class="rating" style="font-size:1.3rem;margin-bottom:4px">★★★★★</div>
+              <div class="text-muted">Dựa trên <strong>${(c.reviews + courseReviews.length - 3).toLocaleString("vi-VN")}</strong> đánh giá học viên</div>
+            </div>
+          </div>
+
+          <h4 class="mb-3">Đánh giá từ học viên</h4>
+          <div id="reviewsContainer">
+            ${courseReviews.map(r => `
+              <div class="mb-3 p-3" style="background:var(--bg-card);border-radius:12px;border:1px solid var(--border)">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <div>
+                    <strong>${r.name}</strong>
+                    <small class="text-muted ms-2">${r.date}</small>
+                  </div>
+                  <span class="rating">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</span>
+                </div>
+                <p class="text-muted mb-0" style="font-size:0.92rem">${r.text}</p>
+              </div>
+            `).join("")}
+          </div>
+
+          <div class="mt-4 p-4" style="background:var(--bg-card);border-radius:16px;border:1px solid var(--border)">
+            <h4 class="mb-3">Để lại đánh giá của bạn</h4>
+            <form id="addReviewForm" onsubmit="submitReview(event)">
+              <div class="mb-3">
+                <label class="form-label-edu">Chọn số sao</label>
+                <div class="star-rating-select" id="starSelector">
+                  <i class="bi bi-star-fill" data-star="1"></i>
+                  <i class="bi bi-star-fill" data-star="2"></i>
+                  <i class="bi bi-star-fill" data-star="3"></i>
+                  <i class="bi bi-star-fill" data-star="4"></i>
+                  <i class="bi bi-star-fill" data-star="5"></i>
+                </div>
+                <input type="hidden" id="reviewRatingVal" value="5" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label-edu">Tên của bạn</label>
+                <input type="text" class="form-control-edu" id="reviewAuthor" placeholder="Nhập tên hiển thị..." required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label-edu">Nội dung nhận xét</label>
+                <textarea class="form-control-edu" id="reviewComment" rows="3" placeholder="Chia sẻ cảm nhận của bạn về khóa học này..." required></textarea>
+              </div>
+              <button type="submit" class="btn-edu">
+                <i class="bi bi-send"></i> Gửi đánh giá
+              </button>
+            </form>
+          </div>`;
+      }
+
+      document.getElementById("tab-reviews").innerHTML = renderReviewsList();
+
+      function initStarSelector() {
+        const stars = document.querySelectorAll("#starSelector i");
+        stars.forEach((s) => {
+          s.addEventListener("click", () => {
+            const val = +s.dataset.star;
+            document.getElementById("reviewRatingVal").value = val;
+            stars.forEach((star, idx) => {
+              star.className = idx < val ? "bi bi-star-fill" : "bi bi-star";
+            });
+          });
+        });
+      }
+      initStarSelector();
+
+      function submitReview(e) {
+        e.preventDefault();
+        const author = document.getElementById("reviewAuthor").value.trim();
+        const comment = document.getElementById("reviewComment").value.trim();
+        const rating = +document.getElementById("reviewRatingVal").value || 5;
+
+        if (!author || !comment) return;
+
+        courseReviews.unshift({
+          name: author,
+          rating: rating,
+          date: "Vừa xong",
+          text: comment,
+        });
+
+        document.getElementById("tab-reviews").innerHTML = renderReviewsList();
+        initStarSelector();
+        showToast("Cảm ơn bạn đã gửi đánh giá!", "success");
+      }
+
+      // Add to cart buttons
+      function updateAddButtonState() {
+        const btn = document.getElementById("addCartBtn");
+        const inCart = getCart().includes(c.id);
+        if (inCart) {
+          btn.innerHTML = `<i class="bi bi-check2-circle"></i> Đã trong giỏ hàng`;
+          btn.classList.add("btn-edu-outline");
+          btn.classList.remove("btn-edu");
+        } else {
+          btn.innerHTML = `<i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng`;
+          btn.classList.add("btn-edu");
+          btn.classList.remove("btn-edu-outline");
+        }
+      }
+      updateAddButtonState();
+
+      document.getElementById("addCartBtn").onclick = () => {
+        addToCart(c.id);
+        updateAddButtonState();
+      };
+
+      function buyNow() {
+        addToCart(c.id);
+        updateAddButtonState();
+        setTimeout(() => (location.href = "cart.html"), 400);
+      }
+
+      function switchTab(e, tab) {
+        document
+          .querySelectorAll(".tab-edu button")
+          .forEach((b) => b.classList.remove("active"));
+        e.currentTarget.classList.add("active");
+        document
+          .querySelectorAll(".tab-content-edu")
+          .forEach((t) => (t.style.display = "none"));
+        const target = document.getElementById("tab-" + tab);
+        if (target) target.style.display = "block";
+      }
+
+      function toggleAccordion(head) {
+        const body = head.nextElementSibling;
+        const isOpen = body.classList.contains("open");
+        head.classList.toggle("open", !isOpen);
+        head.classList.toggle("active", !isOpen);
+        body.classList.toggle("open", !isOpen);
+      }
+
+      // Related courses
+      const related = COURSES.filter(
+        (x) => x.category === c.category && x.id !== c.id
+      ).slice(0, 3);
+      const relContainer = document.getElementById("relatedCourses");
+      if (relContainer) {
+        relContainer.innerHTML = related.length
+          ? related.map((r) => `<div class="col-md-4">${courseCardHTML(r)}</div>`).join("")
+          : COURSES.filter(x => x.id !== c.id).slice(0, 3).map((r) => `<div class="col-md-4">${courseCardHTML(r)}</div>`).join("");
+      }
+    </script>
+  </body>
+</html>
