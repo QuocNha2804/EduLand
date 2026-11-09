@@ -1,15 +1,52 @@
+/* ==========================================================================
+   EduLand — Ultra Responsive & Cross-Device Engine
+   Breakpoints:
+     - Large Desktop: >= 1200px
+     - Small Desktop / Laptop: 992px - 1199px
+     - Tablet Portrait: 768px - 991px
+     - Large Phones / Phablets: 576px - 767px
+     - Standard Mobile Phones: 401px - 575px
+     - Small Mobile (iPhone SE, Foldables): <= 400px
+   ========================================================================== */
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes slideDownMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================== LAPTOP & SMALL DESKTOP (<= 1199px) ===================== */
+@media (max-width: 1199px) {
+  .nav-links {
+    gap: 18px;
+  }
+  .search-box input {
+    width: 120px;
+  }
+  .hero h1 {
+    font-size: 2.7rem;
+  }
+  .course-title {
+    font-size: 1.05rem;
+  }
+}
+
+/* ===================== TABLET PORTRAIT (<= 991px) ===================== */
 @media (max-width: 991px) {
+  /* Navbar */
   .nav-links {
     display: none;
   }
   .hamburger {
-    display: block;
-  }
-  .hero h1 {
-    font-size: 2.4rem;
-  }
-  .hero {
-    padding: 60px 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .nav-links.mobile-open {
     display: flex;
@@ -19,64 +56,493 @@
     left: 0;
     right: 0;
     background: var(--bg-card);
-    padding: 20px;
+    padding: 20px 24px;
     box-shadow: var(--shadow-lg);
-    gap: 16px;
-    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    border-bottom: 2px solid var(--border);
+    z-index: 1001;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideDownMenu 0.25s ease-out;
+  }
+  .nav-links.mobile-open a {
+    display: block;
+    padding: 10px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 119, 182, 0.08);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 60px 0 90px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 580px;
+  }
+  .hero .d-flex {
+    justify-content: center;
+  }
+  .hero-illustration {
+    margin-top: 30px;
+  }
+  .hero-illustration i {
+    font-size: 8rem !important;
+  }
+
+  /* Stats Bar */
+  .stats-bar {
+    margin-top: -45px;
+    padding: 28px 16px;
+  }
+
+  /* Detail Layout */
+  .filter-card {
+    position: static !important;
   }
 }
 
+/* ===================== MOBILE LANDSCAPE & PHABLETS (<= 767px) ===================== */
 @media (max-width: 767px) {
+  /* General Typography & Spacing */
   .section {
-    padding: 50px 0;
+    padding: 48px 0;
   }
   .section-title {
-    font-size: 1.7rem;
+    font-size: 1.75rem;
   }
-  .hero h1 {
-    font-size: 1.9rem;
+  .section-subtitle {
+    font-size: 0.92rem;
+    margin-bottom: 30px;
   }
-  .hero p {
-    font-size: 1rem;
-  }
-  .stat-item .num {
-    font-size: 2rem;
-  }
-  .newsletter {
-    padding: 40px 20px;
-  }
-  .newsletter-form {
-    flex-direction: column;
-    border-radius: 20px;
-  }
-  .newsletter-form input {
-    border-radius: 14px;
-  }
-  .auth-card {
-    padding: 30px 22px;
-  }
+
+  /* Navbar adjustments */
   .search-box {
     display: none;
   }
+
+  /* Hero */
+  .hero h1 {
+    font-size: 1.95rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+  .hero-illustration i {
+    font-size: 6.5rem !important;
+  }
+
+  /* Stats */
+  .stat-item .num {
+    font-size: 1.85rem;
+  }
+  .stat-item .label {
+    font-size: 0.85rem;
+  }
+
+  /* Courses page toolbar */
+  .courses-toolbar {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  /* Horizontal swipeable tabs on course-detail */
+  .tab-edu {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 4px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 18px;
+    padding-bottom: 4px;
+  }
+  .tab-edu::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-edu button {
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  /* Cart Items */
   .cart-item {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 14px;
   }
   .cart-item .thumb {
     width: 60px;
     height: 60px;
     font-size: 1.4rem;
+    border-radius: 8px;
   }
+  .cart-item .info h5 {
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+    line-height: 1.35;
+  }
+  .cart-item .info .inst {
+    font-size: 0.8rem;
+  }
+  .cart-item .price {
+    font-size: 1.05rem;
+  }
+
+  /* Newsletter */
+  .newsletter {
+    padding: 36px 20px;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    border-radius: 18px;
+  }
+  .newsletter-form input {
+    border-radius: 12px;
+    padding: 12px 16px;
+    width: 100%;
+  }
+  .newsletter-form button {
+    border-radius: 12px;
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  /* Modal */
+  .modal-edu-backdrop {
+    padding: 14px;
+  }
+  .modal-edu {
+    padding: 24px 18px;
+    max-width: 95%;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+  .modal-edu .icon-circle {
+    width: 56px;
+    height: 56px;
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+  }
+
+  /* Footer */
   .footer {
-    padding: 50px 0 20px;
-    margin-top: 50px;
+    padding: 45px 0 20px;
+    margin-top: 45px;
+  }
+  .footer h5 {
+    margin-bottom: 12px;
   }
 }
 
+/* ===================== STANDARD MOBILE PHONES (<= 575px) ===================== */
 @media (max-width: 575px) {
+  /* Navbar */
+  .navbar-edu {
+    padding: 10px 0;
+  }
+  .navbar-edu .container {
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 8px !important;
+  }
+  .logo {
+    font-size: 1.3rem;
+    gap: 6px;
+  }
+  .logo i {
+    font-size: 1.45rem;
+  }
+  .nav-icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+  .cart-badge {
+    min-width: 17px;
+    height: 17px;
+    font-size: 0.65rem;
+    top: -3px;
+    right: -3px;
+    padding: 0 4px;
+  }
+  .auth-login-btn {
+    padding: 6px 12px !important;
+    font-size: 0.82rem !important;
+    gap: 4px;
+  }
+  .user-chip {
+    padding: 4px 8px;
+    gap: 4px;
+    font-size: 0.82rem;
+  }
+  .user-chip .avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+  }
+  .hamburger {
+    font-size: 1.4rem;
+    padding: 4px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 35px 0 60px;
+  }
   .hero h1 {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 0.92rem;
+    margin-bottom: 22px;
+  }
+  .hero-illustration i {
+    font-size: 5rem !important;
+  }
+  .hero .d-flex {
+    flex-direction: column;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+    gap: 10px !important;
+  }
+  .hero .btn-edu,
+  .hero .btn-edu-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+
+  /* Stats */
+  .stats-bar {
+    margin-top: -25px;
+    padding: 18px 8px;
+    border-radius: 12px;
+  }
+  .stat-item .num {
+    font-size: 1.55rem;
+  }
+  .stat-item .label {
+    font-size: 0.78rem;
+  }
+
+  /* Form Inputs (16px prevents iOS Safari auto-zoom) */
+  .form-control-edu {
+    font-size: 16px !important;
+    padding: 11px 14px;
+  }
+
+  /* Auth Card */
+  .auth-wrap {
+    padding: 16px 10px;
   }
   .auth-card {
-    padding: 26px 18px;
+    padding: 24px 16px;
+    border-radius: 18px;
+  }
+  .auth-card h2 {
+    font-size: 1.45rem;
+  }
+  .auth-card .sub {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  /* Course Card */
+  .course-thumb {
+    height: 150px;
+    font-size: 3rem;
+  }
+  .course-body {
+    padding: 16px;
+  }
+  .course-title {
+    font-size: 0.98rem;
+    min-height: 38px;
+  }
+  .price {
+    font-size: 1.15rem;
+  }
+  .course-meta button.btn-edu {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  /* Instructor Card */
+  .instructor-card {
+    padding: 20px 14px;
+  }
+  .instructor-avatar {
+    width: 85px;
+    height: 85px;
+    font-size: 1.9rem;
+  }
+  .instructor-card h4 {
+    font-size: 1rem;
+  }
+
+  /* Blog */
+  .blog-thumb {
+    height: 155px;
+    font-size: 2.6rem;
+  }
+  .blog-body {
+    padding: 16px;
+  }
+  .blog-body h4 {
+    font-size: 1rem;
+  }
+
+  /* Detail pages banner icon */
+  #detailBanner {
+    padding: 40px 0 !important;
+  }
+  #detailBanner h1 {
+    font-size: 1.45rem !important;
+  }
+  #detailBanner .hero-illustration i {
+    font-size: 4.5rem !important;
+  }
+
+  /* Breadcrumb truncation */
+  .breadcrumb-item.active {
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  /* Toast notification */
+  #toast-container {
+    top: 60px;
+    left: 10px;
+    right: 10px;
+    align-items: center;
+  }
+  .toast-edu {
+    width: 100%;
+    max-width: 360px;
+    font-size: 0.85rem;
+    padding: 10px 14px;
+    min-width: auto;
+  }
+
+  /* 404 Page */
+  .num-404 {
+    font-size: 5rem !important;
+  }
+  .title-404 {
+    font-size: 1.4rem !important;
+  }
+
+  /* Back to Top */
+  #backToTop {
+    bottom: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+
+  /* Buttons */
+  .btn-edu,
+  .btn-edu-outline {
+    padding: 8px 16px;
+    font-size: 0.88rem;
+  }
+}
+
+/* ===================== SMALL MOBILE / FOLDABLES (<= 400px) ===================== */
+@media (max-width: 400px) {
+  .navbar-edu .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .logo {
+    font-size: 1.15rem;
+  }
+  .logo span {
+    font-size: 1.15rem;
+  }
+  .logo i {
+    font-size: 1.25rem;
+  }
+  .navbar-edu .d-flex.align-items-center.gap-2 {
+    gap: 4px !important;
+  }
+  .nav-icon-btn {
+    width: 33px;
+    height: 33px;
+    font-size: 0.88rem;
+  }
+
+  /* Person icon button only on ultra small screens */
+  .auth-login-btn {
+    width: 33px !important;
+    height: 33px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    justify-content: center !important;
+  }
+  .auth-login-btn .auth-btn-text {
+    display: none !important;
+  }
+  .auth-login-btn i {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  /* Cart item ultra compact */
+  .cart-item {
+    grid-template-columns: 48px 1fr auto;
+    gap: 8px;
+    padding: 10px;
+  }
+  .cart-item .thumb {
+    width: 48px;
+    height: 48px;
+    font-size: 1.15rem;
+  }
+  .cart-item .info h5 {
+    font-size: 0.86rem;
+  }
+  .cart-item .price {
+    font-size: 0.92rem;
+  }
+
+  /* Headings & stats */
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  .stat-item .num {
+    font-size: 1.4rem;
+  }
+  .stat-item .label {
+    font-size: 0.72rem;
+  }
+  .num-404 {
+    font-size: 3.8rem !important;
   }
 }

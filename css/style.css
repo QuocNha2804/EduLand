@@ -23,6 +23,8 @@
   );
 }
 
+:root.dark,
+html.dark,
 body.dark {
   --bg: #071a2b;
   --bg-card: #0d2740;
@@ -43,6 +45,8 @@ body.dark {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -507,6 +511,13 @@ h5 {
   margin: 8px 0;
   min-height: 48px;
 }
+.course-title a {
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+.course-title a:hover {
+  color: var(--primary);
+}
 .course-instructor {
   color: var(--text-muted);
   font-size: 0.88rem;
@@ -707,6 +718,13 @@ h5 {
 .blog-body h4 {
   font-size: 1.1rem;
   margin: 8px 0;
+}
+.blog-body h4 a {
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+.blog-body h4 a:hover {
+  color: var(--primary);
 }
 .blog-body p {
   color: var(--text-muted);
@@ -1045,6 +1063,19 @@ label.form-label-edu {
   align-items: center;
   cursor: pointer;
   font-weight: 600;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+.accordion-edu .head:hover {
+  background: rgba(0, 119, 182, 0.05);
+}
+.accordion-edu .head i {
+  transition: transform 0.3s ease;
+}
+.accordion-edu .head.open i,
+.accordion-edu .head.active i,
+.accordion-edu .item.open .head i {
+  transform: rotate(180deg);
 }
 .accordion-edu .body {
   max-height: 0;
@@ -1210,3 +1241,96 @@ body.dark .badge-advanced {
   background: #7f1d1d;
   color: #fca5a5;
 }
+
+/* ===================== PASSWORD TOGGLE ===================== */
+.password-wrap {
+  position: relative;
+}
+.password-wrap input {
+  padding-right: 46px;
+}
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.15rem;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+.password-toggle:hover {
+  color: var(--primary);
+}
+
+/* ===================== PAYMENT METHODS ===================== */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+  text-align: left;
+}
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.payment-option:hover {
+  border-color: var(--primary);
+  background: rgba(0, 119, 182, 0.04);
+}
+.payment-option.active {
+  border-color: var(--primary);
+  background: rgba(0, 119, 182, 0.08);
+}
+.payment-option input[type="radio"] {
+  accent-color: var(--primary);
+  width: 18px;
+  height: 18px;
+}
+.payment-option i {
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+/* ===================== MOBILE FILTER TOGGLE ===================== */
+.filter-toggle-btn {
+  display: none;
+}
+@media (max-width: 991px) {
+  .filter-toggle-btn {
+    display: inline-flex;
+  }
+  .filter-card.mobile-hidden {
+    display: none;
+  }
+}
+
+/* ===================== REVIEW FORM ===================== */
+.star-rating-select {
+  display: flex;
+  gap: 8px;
+  font-size: 1.4rem;
+  color: #ffb703;
+  cursor: pointer;
+}
+.star-rating-select i {
+  transition: transform 0.15s ease;
+}
+.star-rating-select i:hover {
+  transform: scale(1.2);
+}
+

@@ -1,15 +1,62 @@
-/* Dark mode specific overrides (vars in style.css) */
+/* ==========================================
+   EduLand — Dark Mode Styles & Overrides
+   ========================================== */
+
+:root.dark,
+html.dark,
 body.dark {
   color-scheme: dark;
 }
+
+:root.dark select.form-control-edu option,
+body.dark select.form-control-edu option {
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+:root.dark .course-thumb,
+:root.dark .blog-thumb,
+:root.dark .cart-item .thumb,
+:root.dark .instructor-avatar,
+:root.dark .feature-icon,
+:root.dark .modal-edu .icon-circle,
 body.dark .course-thumb,
 body.dark .blog-thumb,
 body.dark .cart-item .thumb,
 body.dark .instructor-avatar,
 body.dark .feature-icon,
 body.dark .modal-edu .icon-circle {
-  filter: brightness(0.9);
+  filter: brightness(0.92);
 }
+
+:root.dark .btn-edu:hover,
 body.dark .btn-edu:hover {
   box-shadow: 0 10px 30px rgba(0, 180, 216, 0.35);
+}
+
+body.dark .footer {
+  background: #04121f;
+}
+
+body.dark .search-box {
+  background: var(--bg-card);
+}
+
+body.dark .hero {
+  filter: brightness(0.96);
+}
+
+/* Modal dark mode */
+body.dark .modal-edu {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Accordion dark mode */
+body.dark .accordion-edu .head {
+  background: var(--bg-card);
+}
+body.dark .accordion-edu .body {
+  background: var(--bg);
 }
